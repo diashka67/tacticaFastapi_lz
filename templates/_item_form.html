@@ -1,0 +1,25 @@
+<form method="POST" action="{{ action }}" enctype="multipart/form-data" class="edit-form">
+  <label>Категория
+    <select name="category">
+      {% for c in categories %}<option value="{{ c }}"{% if form.category == c %} selected{% endif %}>{{ categories[c] }} {{ c }}</option>{% endfor %}
+    </select>
+  </label>
+
+  <label>Название
+    <input type="text" name="name" value="{{ form.name or '' }}" required maxlength="100" placeholder="«АК-12 Аленький Кавай»">
+  </label>
+
+  <label>Характеристики <small>(по одной в строке, формат: «Название: значение»)</small>
+    <textarea name="specs" rows="4" placeholder="Калибр, мм: 17 (как тюбик блеска)&#10;Масса, кг: 3,6">{{ form.specs or '' }}</textarea>
+  </label>
+
+  <label>Описание
+    <textarea name="description" rows="4" maxlength="1000">{{ form.description or '' }}</textarea>
+  </label>
+
+  <label>Картинка <small>(png, jpg, gif или webp; можно не выбирать)</small>
+    <input type="file" name="image" accept="image/*">
+  </label>
+
+  <button type="submit" class="btn btn-primary">{{ button }}</button>
+</form>

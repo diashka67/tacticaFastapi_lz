@@ -1,0 +1,55 @@
+/* Розовое настроение: фон в сердечках, блёстки, выделение, прокрутка. */
+
+[hidden] { display: none !important; }
+
+body {
+  background-color: #fff0f8;
+  background-image:
+    radial-gradient(circle at 20px 20px, #ffd1ea 3px, transparent 4px),
+    radial-gradient(circle at 60px 60px, #ffe0f0 5px, transparent 6px);
+  background-size: 80px 80px;
+}
+
+::selection { background: #ff69b4; color: #fff; }
+
+/* розовая полоса прокрутки */
+::-webkit-scrollbar { width: 12px; height: 12px; }
+::-webkit-scrollbar-track { background: #ffe0f0; }
+::-webkit-scrollbar-thumb { background: #ff69b4; border-radius: 999px; border: 2px solid #ffe0f0; }
+
+/* блестящий логотип */
+.logo { background: linear-gradient(90deg, #fff, #ffe0f0, #fff); background-size: 200% 100%; -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; animation: shine 3s linear infinite; filter: drop-shadow(2px 2px 0 #e0218a); }
+@keyframes shine { to { background-position: -200% 0; } }
+
+/* бантик над карточками */
+.card { position: relative; }
+.item::before { content: '🎀'; position: absolute; top: -14px; right: -8px; font-size: 30px; transform: rotate(18deg); z-index: 2; }
+
+.flash { display: inline-block; margin-bottom: 18px; padding: 10px 18px; border-radius: 14px; background: #ffe0f0; color: #b8106f; font-weight: 600; }
+.flash-error { background: #fef2f2; border: 1px solid #fecaca; color: #b91c1c; }
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-badge, .marquee span, .logo { animation: none; }
+}
+
+/* ---------- то, что рисует script.js ---------- */
+.timer { display: inline-block; padding: 8px 14px; border-radius: 999px; background: #ffe0f0; color: #b8106f; font-weight: 600; font-variant-numeric: tabular-nums; border: 2px solid #ffb6dc; }
+.timer.warn { background: #fef2f2; color: #b91c1c; border-color: #fecaca; animation: pulse 1s ease-in-out infinite; }
+@keyframes pulse { 50% { transform: scale(1.08); } }
+
+.pass-toggle { align-self: flex-start; padding: 2px 12px; border: 2px solid #ffb6dc; border-radius: 999px; background: #fff; color: #a24b7c; font: inherit; font-size: 13px; cursor: pointer; }
+.pass-toggle:hover { background: #ffe0f0; }
+
+.rules { display: flex; flex-wrap: wrap; gap: 6px 14px; font-size: 13px; font-weight: 600; }
+.rules .ok { color: #16a34a; }
+.rules .bad { color: #b91c1c; }
+
+.preview { width: 140px; height: 105px; object-fit: contain; background: #fff; border: 3px solid #ffb6dc; border-radius: 14px; }
+
+.found { align-self: center; font-size: 14px; color: #a24b7c; font-weight: 600; }
+
+.flash { transition: opacity .8s; }
+.flash.fade { opacity: 0; }
+
+.sparkle { position: absolute; z-index: 100; pointer-events: none; font-size: 22px; animation: float-up .8s ease-out forwards; }
+@keyframes float-up { from { opacity: 1; transform: translateY(0) scale(1); } to { opacity: 0; transform: translateY(-50px) scale(1.6) rotate(25deg); } }

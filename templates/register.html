@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Регистрация — ТактиКавай</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Pacifico&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/home.css">
+  <link rel="stylesheet" href="/static/barbie.css">
+  <link rel="stylesheet" href="/static/auth.css">
+  <script src="/static/script.js" defer></script>
+</head>
+<body class="center-page">
+  <main class="center-card card">
+    <div class="center-emoji">👛</div>
+    <h1 class="center-title">Запись в спецназ</h1>
+    <p class="center-sub">Анкета новобранки. Подпись ставить блёстками.</p>
+
+    {% if error %}<p class="flash flash-error">{{ error }}</p>{% endif %}
+
+    <form method="POST" action="/register" class="auth-form">
+      <label>Имя
+        <input type="text" name="name" value="{{ name or '' }}" required minlength="2" maxlength="50" placeholder="Барби Ивановна">
+      </label>
+      <label>Позывной (email)
+        <input type="email" name="email" value="{{ email or '' }}" required maxlength="100" placeholder="barbie@pink.by">
+      </label>
+      <label>Кодовое слово (пароль) <small>от 8 символов, буква и цифра</small>
+        <input type="password" name="password" required minlength="8" maxlength="64" placeholder="••••••••">
+      </label>
+      <label>Повтори кодовое слово
+        <input type="password" name="confirm" required minlength="8" maxlength="64" placeholder="••••••••">
+      </label>
+      <button type="submit" class="btn btn-primary">Записаться 🎀</button>
+    </form>
+
+    <p class="switch-line">Уже в отряде? <a href="/login">Войти</a></p>
+  </main>
+</body>
+</html>

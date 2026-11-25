@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Профиль — ТактиКавай</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Pacifico&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/home.css">
+  <link rel="stylesheet" href="/static/profile.css">
+  <link rel="stylesheet" href="/static/barbie.css">
+  <script src="/static/script.js" defer></script>
+</head>
+<body>
+{% set page = "profile" %}
+  <header class="header">
+    <div class="logo">🎀 ТактиКавай</div>
+    <nav class="nav">
+      <a href="/home"{% if page == "home" %} class="active"{% endif %}>Каталог</a>
+      <a href="/profile"{% if page == "profile" %} class="active"{% endif %}>Профиль</a>
+      {% if user.role == "admin" %}<a href="/edit"{% if page == "edit" %} class="active"{% endif %}>Редактор</a>{% endif %}
+      <a href="/logout">Выйти</a>
+    </nav>
+  </header>
+
+  <main class="main">
+    <h1 class="page-title">Личное дело бойца 🎀</h1>
+
+    {% if message %}<p class="flash">{{ message }}</p>{% endif %}
+
+    <section class="card profile-card">
+      <div class="avatar-big">
+        {% if user.avatar %}<img src="/{{ user.avatar }}" alt="Аватар">{% else %}{{ user.name[0]|upper }}{% endif %}
+      </div>
+
+      <div class="profile-info">
+        <h2>{{ user.name }}</h2>
+        <p class="profile-line">📧 Позывной (email): <b>{{ user.email }}</b></p>
+        <p class="profile-line">🎖 Звание: <span class="role-badge">{{ role_label }}</span></p>
+        <p class="profile-line">
+          {% if user.role == "admin" %}Допуск: везде, даже на склад блёсток 🔓{% else %}Допуск: смотреть каталог и любоваться 👀{% endif %}
+        </p>
+      </div>
+    </section>
+
+    <section class="card profile-card">
+      <div class="profile-info">
+        <h2>Сменить фото в личном деле 📸</h2>
+        <form method="POST" action="/profile/avatar" enctype="multipart/form-data" class="avatar-form">
+          <input type="file" name="file" accept="image/*">
+          <button type="submit" class="btn btn-primary">Загрузить</button>
+        </form>
+        <p class="hint-line">Подойдёт png, jpg, gif или webp. Лучше — с бантиком.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    © ТактиКавай. Подруги не сдаются 💖
+  </footer>
+</body>
+</html>

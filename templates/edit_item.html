@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Изменить предмет — ТактиКавай</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Pacifico&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/home.css">
+  <link rel="stylesheet" href="/static/edit.css">
+  <link rel="stylesheet" href="/static/barbie.css">
+  <script src="/static/script.js" defer></script>
+</head>
+<body>
+{% set page = "edit" %}
+  <header class="header">
+    <div class="logo">🎀 ТактиКавай</div>
+    <nav class="nav">
+      <a href="/home"{% if page == "home" %} class="active"{% endif %}>Каталог</a>
+      <a href="/profile"{% if page == "profile" %} class="active"{% endif %}>Профиль</a>
+      {% if user.role == "admin" %}<a href="/edit"{% if page == "edit" %} class="active"{% endif %}>Редактор</a>{% endif %}
+      <a href="/logout">Выйти</a>
+    </nav>
+  </header>
+
+  <main class="main">
+    <a href="/edit" class="back-link">← В штаб снабжения</a>
+    <h1 class="page-title">Изменить предмет ✏️</h1>
+
+    {% if error %}<p class="flash flash-error">{{ error }}</p>{% endif %}
+
+    <section class="card edit-card">
+      {% if form.image %}
+      <div class="current-image">
+        <img src="/static/items/{{ form.image }}" alt="" onerror="this.parentElement.remove()">
+        <span>Текущая картинка. Выберите новый файл, чтобы заменить.</span>
+      </div>
+      {% endif %}
+      {% set action = "/edit/" ~ item_id %}
+      {% set button = "Сохранить 💖" %}
+      {% include "_item_form.html" %}
+    </section>
+  </main>
+
+  <footer class="footer">
+    © ТактиКавай. Подруги не сдаются 💖
+  </footer>
+</body>
+</html>

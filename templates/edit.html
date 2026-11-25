@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Редактор — ТактиКавай</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Pacifico&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/home.css">
+  <link rel="stylesheet" href="/static/edit.css">
+  <link rel="stylesheet" href="/static/barbie.css">
+  <script src="/static/script.js" defer></script>
+</head>
+<body>
+{% set page = "edit" %}
+  <header class="header">
+    <div class="logo">🎀 ТактиКавай</div>
+    <nav class="nav">
+      <a href="/home"{% if page == "home" %} class="active"{% endif %}>Каталог</a>
+      <a href="/profile"{% if page == "profile" %} class="active"{% endif %}>Профиль</a>
+      {% if user.role == "admin" %}<a href="/edit"{% if page == "edit" %} class="active"{% endif %}>Редактор</a>{% endif %}
+      <a href="/logout">Выйти</a>
+    </nav>
+  </header>
+
+  <main class="main">
+    <h1 class="page-title">Штаб снабжения 🛠️</h1>
+
+    {% if message %}<p class="flash">{{ message }}</p>{% endif %}
+    {% if error %}<p class="flash flash-error">{{ error }}</p>{% endif %}
+
+    <section class="card edit-card">
+      <h2>Склад: что в каталоге</h2>
+      <div class="table-wrap">
+        <table class="items-table">
+          <tr><th>Название</th><th>Категория</th><th></th></tr>
+          {% for i in items %}
+          <tr>
+            <td>{{ i.name }}</td>
+            <td>{{ categories[i.category] }} {{ i.category }}</td>
+            <td class="actions">
+              <a class="btn-small" href="/edit/{{ i.id }}">Изменить</a>
+              <form method="POST" action="/edit/{{ i.id }}/delete" onsubmit="return confirm('Списать предмет со склада?')">
+                <button type="submit" class="btn-danger">Удалить</button>
+              </form>
+            </td>
+          </tr>
+          {% else %}
+          <tr><td colspan="3" class="empty">Склад пуст ✨</td></tr>
+          {% endfor %}
+        </table>
+      </div>
+    </section>
+
+    <section class="card edit-card">
+      <h2>Принять на склад новый предмет 🎀</h2>
+      {% set action = "/edit" %}
+      {% set button = "Добавить в каталог 💖" %}
+      {% include "_item_form.html" %}
+    </section>
+
+    <section class="card edit-card">
+      <h2>Личный состав 👯</h2>
+      <div class="table-wrap">
+        <table class="items-table">
+          <tr><th>Имя</th><th>Email</th><th>Звание</th></tr>
+          {% for u in users %}
+          <tr><td>{{ u.name }}</td><td>{{ u.email }}</td><td>{{ roles[u.role] or u.role }}</td></tr>
+          {% endfor %}
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    © ТактиКавай. Подруги не сдаются 💖
+  </footer>
+</body>
+</html>

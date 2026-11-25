@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Каталог — ТактиКавай</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Pacifico&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/home.css">
+  <link rel="stylesheet" href="/static/barbie.css">
+  <script src="/static/script.js" defer></script>
+</head>
+<body>
+{% set page = "home" %}
+  <header class="header">
+    <div class="logo">🎀 ТактиКавай</div>
+    <nav class="nav">
+      <a href="/home"{% if page == "home" %} class="active"{% endif %}>Каталог</a>
+      <a href="/profile"{% if page == "profile" %} class="active"{% endif %}>Профиль</a>
+      {% if user.role == "admin" %}<a href="/edit"{% if page == "edit" %} class="active"{% endif %}>Редактор</a>{% endif %}
+      <a href="/logout">Выйти</a>
+    </nav>
+  </header>
+
+  <main class="main">
+    <section class="hero card">
+      <div class="hero-text">
+        <p class="hero-kicker">Приказ №1 по торговому центру «Мега-Блеск»</p>
+        <h1>Здравия желаю, {{ username }}! 🎀</h1>
+        <p>
+          Добро пожаловать в <b>ТактиКавай</b> — первый в мире магазин тактического снаряжения
+          для тех, кто идёт в бой только в хорошем настроении. Всё розовое, всё в стразах,
+          всё сертифицировано подружками. Оружие стреляет комплиментами, броня держит удар
+          сплетен, а танк возит до ближайшего ТЦ.
+        </p>
+        <ul class="hero-stats">
+          <li><b>{{ total }}</b> предметов на складе</li>
+          <li><b>100%</b> боевая готовность блёсток</li>
+          <li><b>0</b> сломанных ногтей</li>
+        </ul>
+      </div>
+      <div class="hero-badge" aria-hidden="true">💖🪖💖</div>
+    </section>
+
+    <div class="marquee" aria-hidden="true">
+      <span>✨ Распродажа в зоне боевых действий ✨ Второй бант — в подарок ✨ Враги сдаются из зависти ✨ Стразы не входят в стоимость, они входят в мораль ✨</span>
+    </div>
+
+    <section class="filters">
+      <div class="chips">
+        <button type="button" class="chip active" data-category="">🎀 Всё ({{ total }})</button>
+        {% for c, emoji in categories.items() %}
+        <button type="button" class="chip" data-category="{{ c }}">{{ emoji }} {{ c }} ({{ counts[c] }})</button>
+        {% endfor %}
+      </div>
+      <div class="search">
+        <input type="text" id="search" maxlength="50" placeholder="Найти бантик, зефирку или танк…" autocomplete="off">
+        <span id="found" class="found">Найдено: {{ total }}</span>
+      </div>
+    </section>
+
+    {% if items %}
+    <section class="grid">
+      {% for i in items %}
+      <article class="item card" data-category="{{ i.category }}" data-text="{{ (i.name ~ ' ' ~ i.description)|lower }}">
+        <div class="item-img">
+          {% if i.image %}<img src="/static/items/{{ i.image }}" alt="{{ i.name }}" loading="lazy" onerror="this.hidden=true;this.nextElementSibling.hidden=false">{% endif %}
+          <div class="item-ph"{% if i.image %} hidden{% endif %}>{{ categories[i.category] or '🎀' }}</div>
+        </div>
+        <div class="item-body">
+          <span class="badge">{{ categories[i.category] or '🎀' }} {{ i.category }}</span>
+          <h3>{{ i.name }}</h3>
+          {% if i.spec_rows %}
+          <ul class="specs">
+            {% for label, value in i.spec_rows %}
+            <li>{% if label %}<span class="spec-label">{{ label }}</span>{% endif %}<span class="spec-value">{{ value }}</span></li>
+            {% endfor %}
+          </ul>
+          {% endif %}
+          <p class="item-desc">{{ i.description }}</p>
+          {% if user.role == "admin" %}<a class="btn-small" href="/edit/{{ i.id }}">✏️ Изменить</a>{% endif %}
+        </div>
+      </article>
+      {% endfor %}
+    </section>
+    {% endif %}
+
+    <section class="card empty-card" id="no-results" hidden>
+      <div class="big-emoji">🔎💔</div>
+      <h2>Разведка ничего не нашла</h2>
+      <p>В этой категории пусто, или такого слова нет на складе. Возможно, всё уже раскупили подружки.</p>
+      <button type="button" class="btn btn-primary" id="reset">Показать весь арсенал</button>
+    </section>
+  </main>
+
+  <footer class="footer">
+    © ТактиКавай. Подруги не сдаются 💖
+  </footer>
+</body>
+</html>

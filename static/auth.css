@@ -1,0 +1,32 @@
+/* Страницы по центру: вход, регистрация, 403, 404. */
+
+.center-page { align-items: center; justify-content: center; padding: 24px 16px; }
+
+.center-card { width: 100%; max-width: 460px; padding: 36px 32px; text-align: center; }
+.center-emoji { font-size: 56px; margin-bottom: 4px; }
+.center-title { font-family: 'Pacifico', cursive; font-size: 34px; font-weight: 400; color: #e0218a; margin-bottom: 8px; }
+.center-sub { color: #8c2c62; line-height: 1.55; margin-bottom: 20px; }
+.center-actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+
+.error-code { font-size: 96px; font-weight: 700; line-height: 1; color: #ff69b4; text-shadow: 4px 4px 0 #ffb6dc; }
+.error-note { margin-bottom: 22px; padding: 8px 14px; border: 2px dashed #ffb6dc; border-radius: 14px; font-size: 13px; color: #a24b7c; }
+
+.auth-form { display: flex; flex-direction: column; gap: 14px; text-align: left; margin-top: 6px; }
+.auth-form label { display: flex; flex-direction: column; gap: 6px; font-weight: 600; color: #b8106f; }
+.auth-form label small { font-weight: 400; color: #a24b7c; }
+.auth-form input {
+  width: 100%;
+  padding: 12px 14px;
+  border: 2px solid #ffa8d5;
+  border-radius: 14px;
+  font: inherit;
+  font-weight: 400;
+  color: #6b0f45;
+  background: #fff;
+  outline: none;
+}
+.auth-form input:focus { border-color: #e0218a; }
+.auth-form .btn { margin-top: 6px; padding: 12px 24px; }
+
+.switch-line { margin-top: 20px; font-size: 14px; color: #a24b7c; }
+.switch-line a { font-weight: 600; }

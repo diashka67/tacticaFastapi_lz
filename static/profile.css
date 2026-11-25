@@ -1,0 +1,51 @@
+/* Страница профиля. Шапка, подвал и основной блок берутся из home.css. */
+
+.page-title { margin-bottom: 20px; }
+
+.flash {
+  display: inline-block;
+  margin-bottom: 18px;
+  padding: 10px 18px;
+  border-radius: 14px;
+  background: #ffe0f0;
+  color: #b8106f;
+  font-weight: 600;
+}
+
+.profile-card { display: flex; gap: 28px; align-items: center; flex-wrap: wrap; padding: 28px; margin-bottom: 24px; }
+.profile-info { flex: 1; min-width: 240px; }
+.profile-info h2 { font-size: 26px; margin-bottom: 12px; }
+.profile-line { margin-bottom: 8px; color: #8c2c62; line-height: 1.5; }
+
+.avatar-big {
+  width: 140px;
+  height: 140px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 4px solid #ff69b4;
+  box-shadow: 5px 5px 0 #ffb6dc;
+  background: #ffe0f0;
+  color: #e0218a;
+  font-size: 56px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.avatar-big img { width: 100%; height: 100%; object-fit: cover; }
+
+.role-badge {
+  display: inline-block;
+  padding: 2px 12px;
+  border-radius: 999px;
+  border: 2px solid #ff69b4;
+  background: #ffe0f0;
+  color: #b8106f;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.avatar-form { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; margin: 12px 0 8px; }
+.avatar-form .btn { padding: 10px 24px; cursor: pointer; }
+.hint-line { font-size: 13px; color: #a24b7c; }

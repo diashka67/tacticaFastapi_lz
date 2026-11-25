@@ -1,0 +1,66 @@
+2026-11-25 01:37:49,350 | INFO | Переход | user=аноним | GET / | статус 303
+2026-11-25 01:37:49,372 | INFO | Переход | user=аноним | GET /login?need=1 | статус 200
+2026-11-25 01:37:49,671 | INFO | Переход | user=аноним | GET /favicon.ico | статус 404
+2026-11-25 01:38:07,529 | INFO | Переход | user=аноним | GET /register | статус 200
+2026-11-25 01:38:46,158 | INFO | Новый пользователь | email=di@gmail.com | role=admin
+2026-11-25 01:38:46,160 | INFO | Действие | user=аноним | POST /register | статус 303
+2026-11-25 01:38:46,171 | INFO | Переход | user=аноним | GET /login?registered=1 | статус 200
+2026-11-25 01:39:01,765 | INFO | Вход | email=di@gmail.com | role=admin
+2026-11-25 01:39:01,765 | INFO | Действие | user=di@gmail.com | POST /login | статус 303
+2026-11-25 01:39:01,813 | INFO | Переход | user=di@gmail.com | GET /home | статус 200
+2026-11-25 01:40:07,167 | INFO | Переход | user=di@gmail.com | GET /edit/ak12 | статус 200
+2026-11-25 01:40:15,896 | INFO | Переход | user=di@gmail.com | GET /home | статус 200
+2026-11-25 01:40:27,546 | INFO | Переход | user=di@gmail.com | GET /profile | статус 200
+2026-11-25 01:40:38,711 | INFO | Действие | user=di@gmail.com | POST /profile/avatar | статус 400
+2026-11-25 01:40:53,436 | INFO | Аватар обновлён | email=di@gmail.com
+2026-11-25 01:40:53,441 | INFO | Действие | user=di@gmail.com | POST /profile/avatar | статус 303
+2026-11-25 01:40:53,509 | INFO | Переход | user=di@gmail.com | GET /profile | статус 200
+2026-11-25 01:40:53,552 | INFO | Переход | user=di@gmail.com | GET /avatars/8bbdbac63d9c749f.jpg | статус 200
+2026-11-25 01:41:00,100 | INFO | Переход | user=di@gmail.com | GET /edit | статус 200
+2026-11-25 01:51:53,577 | INFO | Переход | user=аноним | GET /profile | статус 303
+2026-11-25 01:51:53,587 | INFO | Переход | user=аноним | GET /login?need=1 | статус 200
+2026-11-25 01:51:57,057 | INFO | Переход | user=аноним | GET /edit | статус 303
+2026-11-25 01:51:57,109 | INFO | Переход | user=аноним | GET /login?need=1 | статус 200
+2026-11-25 01:52:03,161 | INFO | Переход | user=аноним | GET /login?need=1 | статус 200
+2026-11-25 01:52:22,302 | INFO | Переход | user=аноним | GET /home | статус 303
+2026-11-25 01:52:22,314 | INFO | Переход | user=аноним | GET /login?need=1 | статус 200
+2026-11-25 01:52:29,403 | INFO | Переход | user=аноним | GET /404 | статус 404
+2026-11-25 01:52:43,270 | INFO | Переход | user=аноним | GET /403 | статус 403
+2026-11-25 02:20:30,651 | INFO | аноним | GET / | 303
+2026-11-25 02:20:30,672 | INFO | аноним | GET /login | 200
+2026-11-25 02:20:57,839 | WARNING | Неудачный вход | email='di@gmail.com'
+2026-11-25 02:20:57,846 | INFO | аноним | POST /login | 400
+2026-11-25 02:21:47,099 | WARNING | Неудачный вход | email='di@gmail.com'
+2026-11-25 02:21:47,099 | INFO | аноним | POST /login | 400
+2026-11-25 02:21:55,127 | INFO | аноним | GET /register | 200
+2026-11-25 02:22:35,712 | INFO | Регистрация | email=diana@gmail.com | role=reader
+2026-11-25 02:22:35,714 | INFO | аноним | POST /register | 303
+2026-11-25 02:22:35,735 | INFO | аноним | GET /login | 200
+2026-11-25 02:22:53,851 | INFO | Вход | email=diana@gmail.com | role=reader
+2026-11-25 02:22:53,853 | INFO | diana@gmail.com | POST /login | 303
+2026-11-25 02:22:53,883 | INFO | diana@gmail.com | GET /home | 200
+2026-11-25 02:23:30,818 | INFO | diana@gmail.com | GET /profile | 200
+2026-11-25 02:23:44,800 | INFO | Аватар обновлён | email=diana@gmail.com
+2026-11-25 02:23:44,801 | INFO | diana@gmail.com | POST /profile/avatar | 303
+2026-11-25 02:23:44,851 | INFO | diana@gmail.com | GET /profile | 200
+2026-11-25 02:23:54,228 | INFO | diana@gmail.com | GET /home | 200
+2026-11-25 02:24:20,382 | INFO | аноним | GET /404 | 404
+2026-11-25 02:24:28,159 | INFO | аноним | GET /401 | 404
+2026-11-25 02:24:35,530 | INFO | аноним | GET /403 | 403
+2026-11-25 02:24:49,663 | INFO | diana@gmail.com | GET /home | 200
+2026-11-25 02:24:55,872 | INFO | аноним | GET /403 | 403
+2026-11-25 02:24:58,553 | INFO | diana@gmail.com | GET /home | 200
+2026-11-25 02:25:02,633 | INFO | diana@gmail.com | GET /profile | 200
+2026-11-25 02:25:06,207 | INFO | diana@gmail.com | GET /home | 200
+2026-11-25 02:25:06,949 | INFO | аноним | GET /403 | 403
+2026-11-25 02:25:09,108 | INFO | diana@gmail.com | GET /home | 200
+2026-11-25 02:25:10,040 | INFO | diana@gmail.com | GET /profile | 200
+2026-11-25 02:27:45,888 | INFO | аноним | GET / | 303
+2026-11-25 02:27:45,916 | INFO | аноним | GET /login | 200
+2026-11-25 02:28:04,115 | INFO | Вход | email=diana@gmail.com | role=reader
+2026-11-25 02:28:04,115 | INFO | diana@gmail.com | POST /login | 303
+2026-11-25 02:28:04,146 | INFO | diana@gmail.com | GET /home | 200
+2026-11-25 02:28:07,922 | INFO | diana@gmail.com | GET /profile | 200
+2026-11-25 02:28:18,791 | INFO | Выход | email=diana@gmail.com
+2026-11-25 02:28:18,791 | INFO | diana@gmail.com | GET /logout | 303
+2026-11-25 02:28:18,803 | INFO | аноним | GET /login | 200
